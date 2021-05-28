@@ -53,7 +53,7 @@ def ocr_metrics(predicts, ground_truth, k=4):
 def iterate_dataset_iam(data_info):
     annotation_txt, image_folder = data_info
     iam = IAM(annotation_txt, image_folder)
-    iam = iam.subset(os.path.join(PP, 'splits', 'test.uttlist'))
+    iam = iam.subset(os.path.join(PP, 'data', 'splits', 'test.uttlist'))
     for i in range(len(iam)):
         yield iam[i]
 
