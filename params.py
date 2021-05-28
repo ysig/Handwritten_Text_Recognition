@@ -11,7 +11,7 @@ import time
 
 # '_' is the blank character for CTC
 
-
+PP = os.path.dirname(__file__)
 class BaseOptions():
     def __init__(self):
         self.initialized = False
@@ -22,13 +22,13 @@ class BaseOptions():
         parser.add_argument('--dataset', type=str, default='IAM',
                             help="Which dataset to train and test on. Supported values are 'IAM' and 'ICFHR2014'.")
         parser.add_argument('--tr_data_path', type=str,
-                            default='/media/vn_nguyen/00520aaf-5941-4990-ae10-7bc62282b9d5/hux_loisonv/',
+                            default='/home/ysig/data/',
                             help="Path to folder containing training datasets")
         parser.add_argument('--data_path', type=str,
-                            default='/home/hux/HTR/',
+                            default='/home/ysig/data/',
                             help="Path to folder containing datasets for prediction")
         parser.add_argument('--model_path', type=str,
-                            default='/home/hux/HTR/trained_networks/IAM_model_imgH64.pth',
+                            default=os.path.join(PP, 'trained_networks', 'ICFHR2014_model_imgH64.pth'),
                             help="Path to file of saved trained model")
         parser.add_argument('--imgH', type=int, default=64)
         parser.add_argument('--imgW', type=int, default=800)
