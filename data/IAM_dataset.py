@@ -62,11 +62,11 @@ class IAM(Dataset):
     def subset(self, file):
         new_dataset = copy.deepcopy(self)
         valid_key = {str(l.strip('\n')) for l in open(file, 'r').readlines()}
-        print(valid_key)
         assert len(valid_key)
         new_data = []
         for d, i in new_dataset.data:
             ds = os.path.split(os.path.split(d)[0])[1]
+            print(ds)
             if ds in valid_key:
                 new_data.append((d, i))
         new_dataset.data = new_data
