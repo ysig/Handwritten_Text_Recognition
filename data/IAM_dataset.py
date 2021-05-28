@@ -5,6 +5,7 @@ from skimage import transform
 from skimage import util
 from tqdm import tqdm
 from params import *
+from torch import nn
 
 params = BaseOptions().parser()
 
@@ -46,7 +47,7 @@ def read_lines_text(annotation_txt):
     return data
 
 
-class IAM(object):
+class IAM(nn.Dataset):
     def __init__(self, annotation_txt, image_folder):
         self.data = read_lines_text(annotation_txt)
         self.image_folder = image_folder
