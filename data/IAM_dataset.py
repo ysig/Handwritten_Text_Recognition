@@ -67,7 +67,6 @@ class IAM(Dataset):
         for d, i in new_dataset.data:
             ds = os.path.split(os.path.split(d)[0])[1]
             if ds in valid_key:
-                print('passed', ds)
                 new_data.append((d, i))
         new_dataset.data = new_data
         return new_dataset
@@ -115,6 +114,7 @@ def gather_iam_line(set='train'):
     #         gt.append((img_path, transcr))
     # print("Reading done.")
     gt = [ds[i] for i in range(len(ds))]
+    print('split', len(gt))
     return gt
 
 
