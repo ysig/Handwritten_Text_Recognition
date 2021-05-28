@@ -76,7 +76,6 @@ def gather_iam_line(set='train'):
     return: List[Tuple(str(image path), str(ground truth))]
     '''
     iam = IAM(line_gt, line_img)
-    iam = ()
     if set == 'train':
         dataset = iam.subset(os.path.join(PP, 'splits', 'train.uttlist')),
     elif set in {'val1', 'val2'}:
