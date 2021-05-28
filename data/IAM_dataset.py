@@ -66,8 +66,8 @@ class IAM(Dataset):
         new_data = []
         for d, i in new_dataset.data:
             ds = os.path.split(os.path.split(d)[0])[1]
-            print(ds)
             if ds in valid_key:
+                print('passed', ds)
                 new_data.append((d, i))
         new_dataset.data = new_data
         return new_dataset
