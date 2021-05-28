@@ -5,7 +5,7 @@ from skimage import transform
 from skimage import util
 from tqdm import tqdm
 from params import *
-from torch import nn
+from torch.utils.data import Dataset
 
 params = BaseOptions().parser()
 
