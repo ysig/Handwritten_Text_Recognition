@@ -80,7 +80,7 @@ def gather_iam_line(set='train'):
     iam = IAM(line_gt, line_img)
     if set == 'train':
         ds = iam.subset(os.path.join(PP, 'splits', 'train.uttlist'))
-    elif set in {'val1', 'val2'}:
+    elif set in {'val1', 'val2', 'val'}:
         ds = iam.subset(os.path.join(PP, 'splits', 'validation.uttlist'))
     else:
         ds = iam.subset(os.path.join(PP, 'splits', 'test.uttlist'))
@@ -129,7 +129,7 @@ def iam_main_loader(set='train'):
     data = []
     for i, (img_path, transcr) in enumerate(tqdm(line_map)):
         try:
-            img = img_io.imread(img_path + '.png')
+            img = img_io.imread(img_path)
             # img = 1 - img.astype(np.float32) / 255.0
             img = img.astype(np.float32) / 255.0
         except:
