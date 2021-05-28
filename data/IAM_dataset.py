@@ -111,8 +111,9 @@ def gather_iam_line(set='train'):
     #         transcr = ' '.join(info[8:])
     #         gt.append((img_path, transcr))
     # print("Reading done.")
-
-    return [dataset[i] for i in range(len(dataset))]
+    gt = [dataset[i] for i in range(len(dataset))]
+    print(gt)
+    return gt
 
 
 def iam_main_loader(set='train'):
