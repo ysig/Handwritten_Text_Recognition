@@ -14,8 +14,11 @@ def CER(label, prediction):
     return nltk.edit_distance(label, prediction)/len(label)
 
 
+# def WER(label, prediction):
+#     return nltk.edit_distance(prediction.split(' '), label.split(' ')) / len(label.split(' '))
+
 def WER(label, prediction):
-    return nltk.edit_distance(prediction.split(' '), label.split(' ')) / len(label.split(' '))
+    return nltk.edit_distance(prediction.split('|'), label.split('|')) / len(label.split('|'))
 
 
 if __name__ == "__main__":

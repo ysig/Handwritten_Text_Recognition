@@ -80,9 +80,9 @@ def gather_iam_line(set='train'):
     '''
     iam = IAM(line_gt, line_img)
     if set == 'train':
-        ds = iam.subset(os.path.join(PP, 'splits', 'train.uttlist')),
+        ds = iam.subset(os.path.join(PP, 'splits', 'train.uttlist'))
     elif set in {'val1', 'val2'}:
-        ds = iam.subset(os.path.join(PP, 'splits', 'validation.uttlist')),
+        ds = iam.subset(os.path.join(PP, 'splits', 'validation.uttlist'))
     else:
         ds = iam.subset(os.path.join(PP, 'splits', 'test.uttlist'))
 
@@ -114,9 +114,7 @@ def gather_iam_line(set='train'):
     #         transcr = ' '.join(info[8:])
     #         gt.append((img_path, transcr))
     # print("Reading done.")
-    import pdb; pdb.set_trace()
     gt = [ds[i] for i in range(len(ds))]
-    print(gt)
     return gt
 
 
@@ -136,7 +134,8 @@ def iam_main_loader(set='train'):
             img = img.astype(np.float32) / 255.0
         except:
             continue
-        data += [(img, transcr.replace("|", " "))]
+        # data += [(img, transcr.replace("|", " "))]
+        data += [(img, transcr)]
 
     return data
 
