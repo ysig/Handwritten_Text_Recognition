@@ -8,7 +8,7 @@ import torch as torch
 from tqdm import tqdm
 from torch.autograd import Variable
 from skimage import io as img_io
-from IAM_dataset import iam_main_loader
+from data.IAM_dataset import iam_main_loader
 
 import copy
 
