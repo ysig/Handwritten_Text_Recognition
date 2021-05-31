@@ -8,7 +8,7 @@ import torch as torch
 from tqdm import tqdm
 from torch.autograd import Variable
 from skimage import io as img_io
-from IAM_dataset import IAM, iam_main_loader
+from IAM_dataset import iam_main_loader
 
 import copy
 
@@ -61,7 +61,7 @@ def predict(model, data_info, imgH, imgW):
 
     # Go through data folder to make predictions
     decoded, real = [], []
-    for filename, txt in iterate_dataset_iam(data_info):
+    for img, txt in iterate_dataset_iam(data_info):
         # print(filename)
         # Process predictions
         img = torch.Tensor(img).float().unsqueeze(0)
