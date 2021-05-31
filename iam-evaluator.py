@@ -38,7 +38,7 @@ def ocr_metrics(predicts, ground_truth, k=4):
         dist = editdistance.eval(pd_cer, gt_cer)
         cer.append(dist / (max(len(pd_cer), len(gt_cer))))
 
-        pd_wer, gt_wer = pd.split(' '), gt.split('|')
+        pd_wer, gt_wer = pd.split(' '), gt.split(' ')
         dist = editdistance.eval(pd_wer, gt_wer)
         wer.append(dist / (max(len(pd_wer), len(gt_wer))))
 
@@ -86,7 +86,7 @@ def predict(model, data_info, imgH, imgW):
             tt = [v for j, v in enumerate(tdec) if j == 0 or v != tdec[j - 1]]
             dec_transcr = ''.join([params.icdict[t] for t in tt]).replace('_', '')
         decoded.append(dec_transcr)
-        real.append(txt)
+        real.append(txt.replace('|', " "))
 
     wer, cer = ocr_metrics(decoded, real)
     print(f"Test: cer = {cer}, wer = {wer}")    
