@@ -64,6 +64,7 @@ def predict(model, data_info, imgH, imgW):
     for img, txt in iterate_dataset_iam():
         # print(filename)
         # Process predictions
+        img = img_resize(img, height=imgH, width=imgW, keep_ratio=True)
         img = torch.Tensor(img).float().unsqueeze(0)
         img = Variable(img.unsqueeze(1))
         # print('img shape', img.shape)
