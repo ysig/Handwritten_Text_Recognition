@@ -61,7 +61,7 @@ def predict(model, data_info, imgH, imgW):
 
     # Go through data folder to make predictions
     decoded, real = [], []
-    for img, txt in iterate_dataset_iam(data_info):
+    for img, txt in iterate_dataset_iam():
         # print(filename)
         # Process predictions
         img = torch.Tensor(img).float().unsqueeze(0)
