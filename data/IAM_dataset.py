@@ -123,7 +123,6 @@ def iam_main_loader(set='train'):
     Store pairs of image and its ground truth text
     return: List[Tuple(nparray(image), str(ground truth text))]
     '''
-
     line_map = gather_iam_line(set)
 
     data = []

@@ -8,7 +8,7 @@ import torch as torch
 from tqdm import tqdm
 from torch.autograd import Variable
 from skimage import io as img_io
-from IAM_dataset import IAM
+from IAM_dataset import IAM, iam_main_loader
 
 import copy
 
@@ -50,12 +50,10 @@ def ocr_metrics(predicts, ground_truth, k=4):
     metrics = np.mean(metrics, axis=1)
     return metrics
 
-def iterate_dataset_iam(data_info):
-    annotation_txt, image_folder = data_info
-    iam = IAM(annotation_txt, image_folder)
-    iam = iam.subset(os.path.join(PP, 'data', 'splits', 'test.uttlist'))
-    for i in range(len(iam)):
-        yield iam[i]
+def iterate_dataset_iam():
+    lst = iam_main_loader('test')
+    for item in tqdm(lst):
+        yield item
 
 def predict(model, data_info, imgH, imgW):
     # Create folder to stock predictions
@@ -66,8 +64,6 @@ def predict(model, data_info, imgH, imgW):
     for filename, txt in iterate_dataset_iam(data_info):
         # print(filename)
         # Process predictions
-        img = img_io.imread(filename, plugin='matplotlib', as_gray=True)
-        img = img_resize(img, height=imgH, width=imgW, keep_ratio=True)
         img = torch.Tensor(img).float().unsqueeze(0)
         img = Variable(img.unsqueeze(1))
         # print('img shape', img.shape)
